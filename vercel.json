@@ -1,4 +1,0 @@
-{
-  "devCommand": "streamlit run main.py --logger.level=debug",
-  "regions": ["iad1"]
-}
