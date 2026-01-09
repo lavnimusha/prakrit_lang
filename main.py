@@ -1,18 +1,9 @@
-import configparser
-import os
-import openai
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-import configparser
-import os
-import openai
-from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-import st
-
+import streamlit as st
 
 # ---------- EXTRACT KEY ----------
-st.secrets["OPENAI_KEY"]
+key =st.secrets["OPENAI_KEY"]
 
 # ---------- SET ENV + OPENAI ----------
 
@@ -24,7 +15,7 @@ COLLECTION_NAME = "prakrit_dict"
 # ---- LOAD EMBEDDINGS ----
 embedding_function = OpenAIEmbeddings(
     model="text-embedding-3-large",
-    openai_api_key=key
+    openai_api_key= st.secrets["OPENAI_KEY"]
 )
 
 vectorstore = Chroma(
@@ -37,7 +28,7 @@ vectorstore = Chroma(
 gpt_5_2 = ChatOpenAI(
     model="gpt-5.2",
     temperature=0,
-    openai_api_key=key
+    openai_api_key=st.secrets["OPENAI_KEY"]
 )
 
 import os
