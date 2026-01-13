@@ -1,18 +1,20 @@
+import os
 import streamlit as st
 from openai import OpenAI
-import streamlit as st
-
-# ---------- EXTRACT KEY ----------
 
 # ----------------------------
-# CONFIG
+# STREAMLIT CONFIG
 # ----------------------------
 st.set_page_config(
     page_title="Prakrit Translator",
     page_icon="📜",
     layout="centered"
 )
-OPENAI_API_KEY=st.secrets["OPENAI_KEY"]
+
+# ----------------------------
+# OPENAI CLIENT
+# ----------------------------
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -40,7 +42,7 @@ TEXT:
 """
 
     response = client.chat.completions.create(
-        model="gpt-5.2",
+        model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
         temperature=0
     )
@@ -70,10 +72,3 @@ if st.button("Translate"):
                 st.text(result)
             except Exception as e:
                 st.error(f"Error: {e}")
-
-
-
-
-
-
-
